@@ -735,7 +735,7 @@ class JobController extends Controller
 
     public function getApiEth($hash){
         //$hash='0xaf67ac4758c2c8fbff8269a6556f2e93d5e7288db8084ae1a289e80b655b7cc1';
-        //try {
+        try {
             $info=DB::table('transactions')->where('tx_hash',$hash)->first();
             if(!$info){
                 DB::table('token_boss_get')->insert(array('hash'=>$hash,'update_time'=>date('Y-m-d H:i:s'),'to'=>'','data'=>'hash找不到'));
@@ -764,11 +764,11 @@ class JobController extends Controller
             //$task_message2 = json_decode(file_get_contents($url2),true);
             DB::table('token_boss_get')->insert(array('hash'=>$info->erc20_tx_hash,'update_time'=>date('Y-m-d H:i:s'),'to'=>$info->erc20_to,'data'=>$task_message2));
             return 1;
-//        } catch (\Exception $exception) {
-//            DB::table('token_boss_get')->insert(array('hash'=>$hash,'update_time'=>date('Y-m-d H:i:s'),'to'=>'','data'=>'发生错误'));
-//            return 1;
-//
-//        }
+        } catch (\Exception $exception) {
+            DB::table('token_boss_get')->insert(array('hash'=>$hash,'update_time'=>date('Y-m-d H:i:s'),'to'=>'','data'=>'发生错误'));
+            return 1;
+
+        }
 
     }
 
