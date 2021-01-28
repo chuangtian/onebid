@@ -96,6 +96,7 @@ class JobController extends Controller
         $date2= date("Y-m-d H:i:s", strtotime("-5 minute"));
         $ercHash=$request->input('erc20_tx_hash',false);
         $info=DB::table('token_confirm')->where('update_time','>',$date2)->where('hash',$ercHash)->first();
+        dd($info,$date2);
         if($info){
             return 4;
         }
@@ -112,16 +113,6 @@ class JobController extends Controller
             $data['to']=$erc20_data->erc20_to;
             $data['amount']=$erc20_data->erc20_value;
             $data['token']=$erc20_data->erc20_token;
-            //$response = $this->curl_post('https://tu.prancegoldholdings.com/erc_api', array('hash'=>$ercHash,'to'=>$task_message['erc20_to'],'apikey'=>'Rd5m4Vy42zERBPTb'));
-//            $url2 = 'https://client.rcmfx.com/erc_api?hash='.$ercHash.'&to='.$erc20_data->erc20_to.'&api_key=Rd5m4Vy42zERBPTb';
-//            $task_message2 = file_get_contents($url2);
-//            //$task_message2 = json_decode(file_get_contents($url2),true);
-//            DB::table('token_boss_get')->insert(array('hash'=>$ercHash,'update_time'=>date('Y-m-d H:i:s'),'to'=>$erc20_data->erc20_to,'data'=>$task_message2));
-
-//            $url2 = 'https://client.rcmfx.com/erc_api?hash='.$ercHash.'&to='.$erc20_data->erc20_to.'&api_key=Rd5m4Vy42zERBPTb';
-//            $task_message2 = file_get_contents($url2);
-//            //$task_message2 = json_decode(file_get_contents($url2),true);
-//            DB::table('token_boss_get')->insert(array('hash'=>$ercHash,'update_time'=>date('Y-m-d H:i:s'),'to'=>$erc20_data->erc20_to,'data'=>$task_message2));
             $this->getApi($ercHash);
             //测试服测试
             if($erc20_data->erc20_to===config('app.erc20Address')){
