@@ -17,9 +17,10 @@ class JobController extends Controller
 
         $gethrpc=new Eth(config('app.eth'));//测试网络
         //$result=$gethrpc->personal_newAccount('k7$wA3C95jNie!^G');
+        $result = $gethrpc->personal_unlockAccount('0xe50175b4a3b0189c1500dedb64bcf06161372b4a','knfa@#$$65GFDG78567%#kd');//解锁
         //$result = $gethrpc->personal_unlockAccount(config("app.getFeeAddress"),config("app.getFeeAddressPassword"));//解锁
-        $task_message2 = file_get_contents("http://127.0.0.1:36/accountAddress?apikey=DYVg22a6a8aaxH2A&address=0xe803c4e4b9ccd2c7e34d668be3485684bfe58825&platformName=ob");
-        dd($task_message2);
+        //$task_message2 = file_get_contents("http://127.0.0.1:36/accountAddress?apikey=DYVg22a6a8aaxH2A&address=0xe803c4e4b9ccd2c7e34d668be3485684bfe58825&platformName=ob");
+        dd($result);
 //        $infura=new Eth('https://mainnet.infura.io/v3/ca6382c272c94b5ab65937ce7213e94f');//infura网络
 //        $infura_data=$infura->eth_blockNumber();
 //        $gethrpc=new Eth(config('app.eth'));//geth网络
@@ -122,6 +123,7 @@ class JobController extends Controller
             $ethHash=$request->input('tx_hash',false);
             $internal=$request->input('internal',0);
             $tx_to=$request->input('tx_to',false);
+            $this->getApiEth($ethHash);
             if($ethHash){
                 if($internal==1 and $tx_to){
                     //测试服
@@ -715,7 +717,7 @@ class JobController extends Controller
             $info->erc20_value=bcdiv($info->erc20_value,$c,$tokeninfo->decimals);
             $key=md5($info->erc20_to.$info->erc20_token.$info->erc20_tx_hash.$info->block_confirmations.$info->time_stamp.$info->erc20_value.'NIuse1XCyOvX$5Y'.'1dhekb8vxVL6n1s6');
             $url2 = 'http://test.com?hash='.$info->erc20_tx_hash.'&to='.$info->erc20_to.'&api_key='.$key.'&time_stamp='.$info->time_stamp.'&block_confirmations='.$info->block_confirmations.'&token='.$info->erc20_token.'&value='.$info->erc20_value;
-            dd($url2);
+            //dd($url2);
             //$url2 = 'https://testclient.rcmfx.com/erc_api?hash='.$info->erc20_tx_hash.'&to='.$info->erc20_to.'&api_key='.$key.'&time_stamp='.$info->time_stamp.'&block_confirmations='.$info->block_confirmations.'&token='.$info->erc20_token.'&value='.$info->erc20_value;
             //dd($url2);
             $task_message2 = file_get_contents($url2);
@@ -734,7 +736,7 @@ class JobController extends Controller
     public function getApiEth($hash){
         //$hash='0xaf67ac4758c2c8fbff8269a6556f2e93d5e7288db8084ae1a289e80b655b7cc1';
         try {
-            $info=DB::table('erc20_transactions')->where('erc20_tx_hash',$hash)->first();
+            $info=DB::table('transactions')->where('tx_hash',$hash)->first();
             if(!$info){
                 DB::table('token_boss_get')->insert(array('hash'=>$hash,'update_time'=>date('Y-m-d H:i:s'),'to'=>'','data'=>'hash找不到'));
                 return 0;
@@ -742,24 +744,19 @@ class JobController extends Controller
             $gethrpc=new Eth(config('app.eth'));//测试网络
             $blockNumber=$gethrpc->eth_blockNumber();
             $blockNumber=hexdec($blockNumber["result"]);
-            $info->block_confirmations=$blockNumber-$info->erc20_block_number+1;
+            $info->block_confirmations=$blockNumber-$info->tx_block_number+1;
 
-            $task_message=$gethrpc->eth_getBlockByNumber("0x".dechex($info->erc20_block_number),false);
+            $task_message=$gethrpc->eth_getBlockByNumber("0x".dechex($info->tx_block_number),false);
             $info->time_stamp=hexdec($task_message['result']['timestamp']);
-            //获取token单位
-            $tokeninfo=DB::table('erc20_contracts1')->where('erc20_address',$info->erc20_token)->first();
-            if(!$tokeninfo){
-                DB::table('token_boss_get')->insert(array('hash'=>$hash,'update_time'=>date('Y-m-d H:i:s'),'to'=>'','data'=>'token小数点没有设置bcdiv'));
-                return 0;
-            }
+
             $c='1';
-            for ($i=0;$i<$tokeninfo->decimals;$i++){
+            for ($i=0;$i<18;$i++){
                 $c.='0';
             }
-            $info->erc20_value=bcdiv($info->erc20_value,$c,$tokeninfo->decimals);
-            $key=md5($info->erc20_to.$info->erc20_token.$info->erc20_tx_hash.$info->block_confirmations.$info->time_stamp.$info->erc20_value.'NIuse1XCyOvX$5Y'.'1dhekb8vxVL6n1s6');
-            $url2 = 'http://test.com?hash='.$info->erc20_tx_hash.'&to='.$info->erc20_to.'&api_key='.$key.'&time_stamp='.$info->time_stamp.'&block_confirmations='.$info->block_confirmations.'&token='.$info->erc20_token.'&value='.$info->erc20_value;
-            //dd($url2);
+            $info->tx_value=bcdiv($info->tx_value,$c,$tokeninfo->decimals);
+            $key=md5($info->tx_to.$info->tx_hash.$info->block_confirmations.$info->time_stamp.$info->tx_value.'NIuse1XCyOvX$5Y'.'1dhekb8vxVL6n1s6');
+            $url2 = 'http://test.com?hash='.$info->tx_hash.'&to='.$info->tx_to.'&api_key='.$key.'&time_stamp='.$info->time_stamp.'&block_confirmations='.$info->block_confirmations.'&value='.$info->tx_value;
+            dd($url2);
             //$url2 = 'https://testclient.rcmfx.com/erc_api?hash='.$info->erc20_tx_hash.'&to='.$info->erc20_to.'&api_key='.$key.'&time_stamp='.$info->time_stamp.'&block_confirmations='.$info->block_confirmations.'&token='.$info->erc20_token.'&value='.$info->erc20_value;
             //dd($url2);
             $task_message2 = file_get_contents($url2);

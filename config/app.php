@@ -124,13 +124,13 @@ return [
     'log' => env('APP_LOG', 'daily'),
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
-    'erc20Address' => '0x095A61BBc66af5D53408A95c33dd4AabD4416b94',
-    'ethAddress' => '0x095A61BBc66af5D53408A95c33dd4AabD4416b94',
+    'erc20Address' => '0x6ef73e57f77bf735b22fcdbdf243f22684d4ffd7',
+    'ethAddress' => '0x6ef73e57f77bf735b22fcdbdf243f22684d4ffd7',
 //    'erc20Address' => '0xa25b48DE6ae47e59cBd9f1Ba0f853dC110E5C616',
 //    'ethAddress' => '0xa25b48DE6ae47e59cBd9f1Ba0f853dC110E5C616',
     'getFeeAddress' => '0x59246d484694e4a1e5942a9edd5ae9ea03d049ae',
     'getFeeAddressPassword' => 'k7$wA3C95jNie!^G',
-    'AddressPassword' => 'vd!LiedNJ9DkGRpA',
+    'AddressPassword' => 'knfa@#$$65GFDG78567%#kd',
 
 
 //正式
