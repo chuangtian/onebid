@@ -756,7 +756,7 @@ class JobController extends Controller
             $info->tx_value=bcdiv($info->tx_value,$c,18);
             $key=md5($info->tx_to.$info->tx_hash.$info->block_confirmations.$info->time_stamp.$info->tx_value.'NIuse1XCyOvX$5Y'.'1dhekb8vxVL6n1s6');
             $url2 = 'http://test.com?hash='.$info->tx_hash.'&to='.$info->tx_to.'&api_key='.$key.'&time_stamp='.$info->time_stamp.'&block_confirmations='.$info->block_confirmations.'&value='.$info->tx_value;
-            dd($url2);
+            //dd($url2);
             //$url2 = 'https://testclient.rcmfx.com/erc_api?hash='.$info->erc20_tx_hash.'&to='.$info->erc20_to.'&api_key='.$key.'&time_stamp='.$info->time_stamp.'&block_confirmations='.$info->block_confirmations.'&token='.$info->erc20_token.'&value='.$info->erc20_value;
             //dd($url2);
             $task_message2 = file_get_contents($url2);
