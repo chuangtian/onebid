@@ -715,6 +715,50 @@ class JobController extends Controller
             $info->erc20_value=bcdiv($info->erc20_value,$c,$tokeninfo->decimals);
             $key=md5($info->erc20_to.$info->erc20_token.$info->erc20_tx_hash.$info->block_confirmations.$info->time_stamp.$info->erc20_value.'NIuse1XCyOvX$5Y'.'1dhekb8vxVL6n1s6');
             $url2 = 'http://test.com?hash='.$info->erc20_tx_hash.'&to='.$info->erc20_to.'&api_key='.$key.'&time_stamp='.$info->time_stamp.'&block_confirmations='.$info->block_confirmations.'&token='.$info->erc20_token.'&value='.$info->erc20_value;
+            dd($url2);
+            //$url2 = 'https://testclient.rcmfx.com/erc_api?hash='.$info->erc20_tx_hash.'&to='.$info->erc20_to.'&api_key='.$key.'&time_stamp='.$info->time_stamp.'&block_confirmations='.$info->block_confirmations.'&token='.$info->erc20_token.'&value='.$info->erc20_value;
+            //dd($url2);
+            $task_message2 = file_get_contents($url2);
+            //dd($url2,$task_message2);
+            //$task_message2 = json_decode(file_get_contents($url2),true);
+            DB::table('token_boss_get')->insert(array('hash'=>$info->erc20_tx_hash,'update_time'=>date('Y-m-d H:i:s'),'to'=>$info->erc20_to,'data'=>$task_message2));
+            return 1;
+        } catch (\Exception $exception) {
+            DB::table('token_boss_get')->insert(array('hash'=>$hash,'update_time'=>date('Y-m-d H:i:s'),'to'=>'','data'=>'发生错误'));
+            return 1;
+
+        }
+
+    }
+
+    public function getApiEth($hash){
+        //$hash='0xaf67ac4758c2c8fbff8269a6556f2e93d5e7288db8084ae1a289e80b655b7cc1';
+        try {
+            $info=DB::table('erc20_transactions')->where('erc20_tx_hash',$hash)->first();
+            if(!$info){
+                DB::table('token_boss_get')->insert(array('hash'=>$hash,'update_time'=>date('Y-m-d H:i:s'),'to'=>'','data'=>'hash找不到'));
+                return 0;
+            }
+            $gethrpc=new Eth(config('app.eth'));//测试网络
+            $blockNumber=$gethrpc->eth_blockNumber();
+            $blockNumber=hexdec($blockNumber["result"]);
+            $info->block_confirmations=$blockNumber-$info->erc20_block_number+1;
+
+            $task_message=$gethrpc->eth_getBlockByNumber("0x".dechex($info->erc20_block_number),false);
+            $info->time_stamp=hexdec($task_message['result']['timestamp']);
+            //获取token单位
+            $tokeninfo=DB::table('erc20_contracts1')->where('erc20_address',$info->erc20_token)->first();
+            if(!$tokeninfo){
+                DB::table('token_boss_get')->insert(array('hash'=>$hash,'update_time'=>date('Y-m-d H:i:s'),'to'=>'','data'=>'token小数点没有设置bcdiv'));
+                return 0;
+            }
+            $c='1';
+            for ($i=0;$i<$tokeninfo->decimals;$i++){
+                $c.='0';
+            }
+            $info->erc20_value=bcdiv($info->erc20_value,$c,$tokeninfo->decimals);
+            $key=md5($info->erc20_to.$info->erc20_token.$info->erc20_tx_hash.$info->block_confirmations.$info->time_stamp.$info->erc20_value.'NIuse1XCyOvX$5Y'.'1dhekb8vxVL6n1s6');
+            $url2 = 'http://test.com?hash='.$info->erc20_tx_hash.'&to='.$info->erc20_to.'&api_key='.$key.'&time_stamp='.$info->time_stamp.'&block_confirmations='.$info->block_confirmations.'&token='.$info->erc20_token.'&value='.$info->erc20_value;
             //dd($url2);
             //$url2 = 'https://testclient.rcmfx.com/erc_api?hash='.$info->erc20_tx_hash.'&to='.$info->erc20_to.'&api_key='.$key.'&time_stamp='.$info->time_stamp.'&block_confirmations='.$info->block_confirmations.'&token='.$info->erc20_token.'&value='.$info->erc20_value;
             //dd($url2);
