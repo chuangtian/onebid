@@ -16,10 +16,10 @@ class JobController extends Controller
 
 
         $gethrpc=new Eth(config('app.eth'));//测试网络
-        $result=$gethrpc->personal_newAccount('k7$wA3C95jNie!^G');
-        $result = $gethrpc->personal_unlockAccount(config("app.getFeeAddress"),config("app.getFeeAddressPassword"));//解锁
-
-        dd($result);
+        //$result=$gethrpc->personal_newAccount('k7$wA3C95jNie!^G');
+        //$result = $gethrpc->personal_unlockAccount(config("app.getFeeAddress"),config("app.getFeeAddressPassword"));//解锁
+        $task_message2 = file_get_contents("http://127.0.0.1:36/accountAddress?apikey=DYVg22a6a8aaxH2A&address=0xe803c4e4b9ccd2c7e34d668be3485684bfe58825&platformName=ob");
+        dd($task_message2);
 //        $infura=new Eth('https://mainnet.infura.io/v3/ca6382c272c94b5ab65937ce7213e94f');//infura网络
 //        $infura_data=$infura->eth_blockNumber();
 //        $gethrpc=new Eth(config('app.eth'));//geth网络
