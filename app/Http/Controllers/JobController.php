@@ -163,7 +163,7 @@ class JobController extends Controller
                     }
                 }else{
                     //测试服测试
-                    $url2 = config('app.eth_api').'/findTransactionByHash?apikey=123456&txHash='.$ethHash;
+                    $url2 = config('app.eth_api').'/findTransactionByHash?apikey=DYVg22a6a8aaxH2A&txHash='.$ethHash;
                     $task_message = json_decode(file_get_contents($url2), true)['txResults'][0];
                     $data['hash']=$ethHash;
                     $data['confirm']=1;
