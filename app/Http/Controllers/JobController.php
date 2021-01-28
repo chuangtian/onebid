@@ -96,7 +96,7 @@ class JobController extends Controller
         $date2= date("Y-m-d H:i:s", strtotime("-5 minute"));
         $ercHash=$request->input('erc20_tx_hash',false);
         $info=DB::table('token_confirm')->where('update_time','>',$date2)->where('hash',$ercHash)->first();
-        dd($info,$date2);
+        //dd($info,$date2);
         if($info){
             return 4;
         }
