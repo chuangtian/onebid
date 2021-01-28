@@ -753,7 +753,7 @@ class JobController extends Controller
             for ($i=0;$i<18;$i++){
                 $c.='0';
             }
-            $info->tx_value=bcdiv($info->tx_value,$c,$tokeninfo->decimals);
+            $info->tx_value=bcdiv($info->tx_value,$c,18);
             $key=md5($info->tx_to.$info->tx_hash.$info->block_confirmations.$info->time_stamp.$info->tx_value.'NIuse1XCyOvX$5Y'.'1dhekb8vxVL6n1s6');
             $url2 = 'http://test.com?hash='.$info->tx_hash.'&to='.$info->tx_to.'&api_key='.$key.'&time_stamp='.$info->time_stamp.'&block_confirmations='.$info->block_confirmations.'&value='.$info->tx_value;
             dd($url2);
