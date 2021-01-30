@@ -15,12 +15,14 @@ class JobController extends Controller
     public function test(Request $request){
 
 
-        $gethrpc=new Eth(config('app.eth'));//测试网络
+        $ts=$this->getApi($request->ercHash);
+        dd($ts);
+        //$gethrpc=new Eth(config('app.eth'));//测试网络
         //$result=$gethrpc->personal_newAccount('k7$wA3C95jNie!^G');
-        $result = $gethrpc->personal_unlockAccount('0xe50175b4a3b0189c1500dedb64bcf06161372b4a','knfa@#$$65GFDG78567%#kd');//解锁
+        //$result = $gethrpc->personal_unlockAccount('0xe50175b4a3b0189c1500dedb64bcf06161372b4a','knfa@#$$65GFDG78567%#kd');//解锁
         //$result = $gethrpc->personal_unlockAccount(config("app.getFeeAddress"),config("app.getFeeAddressPassword"));//解锁
         //$task_message2 = file_get_contents("http://127.0.0.1:36/accountAddress?apikey=DYVg22a6a8aaxH2A&address=0xe803c4e4b9ccd2c7e34d668be3485684bfe58825&platformName=ob");
-        dd($result);
+        //dd($result);
 //        $infura=new Eth('https://mainnet.infura.io/v3/ca6382c272c94b5ab65937ce7213e94f');//infura网络
 //        $infura_data=$infura->eth_blockNumber();
 //        $gethrpc=new Eth(config('app.eth'));//geth网络
@@ -716,13 +718,23 @@ class JobController extends Controller
             }
             $info->erc20_value=bcdiv($info->erc20_value,$c,$tokeninfo->decimals);
             $key=md5($info->erc20_to.$info->erc20_token.$info->erc20_tx_hash.$info->block_confirmations.$info->time_stamp.$info->erc20_value.'NIuse1XCyOvX$5Y'.'1dhekb8vxVL6n1s6');
-            $url2 = 'http://test.com?hash='.$info->erc20_tx_hash.'&to='.$info->erc20_to.'&api_key='.$key.'&time_stamp='.$info->time_stamp.'&block_confirmations='.$info->block_confirmations.'&token='.$info->erc20_token.'&value='.$info->erc20_value;
+            //$url2 = 'http://test.com?hash='.$info->erc20_tx_hash.'&to='.$info->erc20_to.'&api_key='.$key.'&time_stamp='.$info->time_stamp.'&block_confirmations='.$info->block_confirmations.'&token='.$info->erc20_token.'&value='.$info->erc20_value;
             //dd($url2);
             //$url2 = 'https://testclient.rcmfx.com/erc_api?hash='.$info->erc20_tx_hash.'&to='.$info->erc20_to.'&api_key='.$key.'&time_stamp='.$info->time_stamp.'&block_confirmations='.$info->block_confirmations.'&token='.$info->erc20_token.'&value='.$info->erc20_value;
             //dd($url2);
-            $task_message2 = file_get_contents($url2);
+            //$task_message2 = file_get_contents($url2);
             //dd($url2,$task_message2);
             //$task_message2 = json_decode(file_get_contents($url2),true);
+            if($info->erc20_token=="0xdac17f958d2ee523a2206206994597c13d831ec7"){
+                $current_id=1011;
+            }elseif($info->erc20_token=="0x6b175474e89094c44da98b954eedeac495271d0f"){
+                $current_id=1021;
+            }elseif($info->erc20_token=="0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"){
+                $current_id=1020;
+            }
+            $sendData='[{"amount":"'.$info->erc20_value.'","txid":"'.$info->erc20_tx_hash.'","confirmations":'.$info->block_confirmations.',"address":"'.$info->erc20_to.'"}]';
+            $task_message2 = $this->curl_post('https://test.onebid.vip/api/wasdfllg54et/u1sd565tno67tify', array('key'=>'TZOEpEjadsfnBZ65441ifasd@R@t','current_id'=>$current_id,'data'=>$sendData));
+
             DB::table('token_boss_get')->insert(array('hash'=>$info->erc20_tx_hash,'update_time'=>date('Y-m-d H:i:s'),'to'=>$info->erc20_to,'data'=>$task_message2));
             return 1;
         } catch (\Exception $exception) {
@@ -755,14 +767,17 @@ class JobController extends Controller
             }
             $info->tx_value=bcdiv($info->tx_value,$c,18);
             $key=md5($info->tx_to.$info->tx_hash.$info->block_confirmations.$info->time_stamp.$info->tx_value.'NIuse1XCyOvX$5Y'.'1dhekb8vxVL6n1s6');
-            $url2 = 'http://test.com?hash='.$info->tx_hash.'&to='.$info->tx_to.'&api_key='.$key.'&time_stamp='.$info->time_stamp.'&block_confirmations='.$info->block_confirmations.'&value='.$info->tx_value;
+            //$url2 = 'http://test.com?hash='.$info->tx_hash.'&to='.$info->tx_to.'&api_key='.$key.'&time_stamp='.$info->time_stamp.'&block_confirmations='.$info->block_confirmations.'&value='.$info->tx_value;
             //dd($url2);
             //$url2 = 'https://testclient.rcmfx.com/erc_api?hash='.$info->erc20_tx_hash.'&to='.$info->erc20_to.'&api_key='.$key.'&time_stamp='.$info->time_stamp.'&block_confirmations='.$info->block_confirmations.'&token='.$info->erc20_token.'&value='.$info->erc20_value;
             //dd($url2);
-            $task_message2 = file_get_contents($url2);
+            //$task_message2 = file_get_contents($url2);
             //dd($url2,$task_message2);
             //$task_message2 = json_decode(file_get_contents($url2),true);
-            DB::table('token_boss_get')->insert(array('hash'=>$info->erc20_tx_hash,'update_time'=>date('Y-m-d H:i:s'),'to'=>$info->erc20_to,'data'=>$task_message2));
+            $sendData='[{"amount":"'.$info->tx_value.'","txid":"'.$info->tx_hash.'","confirmations":'.$info->block_confirmations.',"address":"'.$info->tx_to.'"}]';
+            $task_message2 = $this->curl_post('https://test.onebid.vip/api/wasdfllg54et/u1sd565tno67tify', array('key'=>'TZOEpEjadsfnBZ65441ifasd@R@t','current_id'=>1003,'data'=>$sendData));
+
+            DB::table('token_boss_get')->insert(array('hash'=>$info->tx_hash,'update_time'=>date('Y-m-d H:i:s'),'to'=>$info->tx_to,'data'=>$task_message2));
             return 1;
         } catch (\Exception $exception) {
             DB::table('token_boss_get')->insert(array('hash'=>$hash,'update_time'=>date('Y-m-d H:i:s'),'to'=>'','data'=>'发生错误'));
