@@ -15,7 +15,8 @@ class JobController extends Controller
     public function test(Request $request){
 
 
-        $ts=$this->getApi($request->ercHash);
+       // $ts=$this->getApi($request->ercHash);
+        $ts=$this->getApiEth($request->ercHash);
         dd($ts);
         //$gethrpc=new Eth(config('app.eth'));//测试网络
         //$result=$gethrpc->personal_newAccount('k7$wA3C95jNie!^G');
