@@ -734,7 +734,8 @@ class JobController extends Controller
                 $current_id=1020;
             }
             $sendData='[{"amount":"'.$info->erc20_value.'","txid":"'.$info->erc20_tx_hash.'","confirmations":'.$info->block_confirmations.',"address":"'.$info->erc20_to.'"}]';
-            $task_message2 = $this->curl_post('https://test.onebid.vip/api/wasdfllg54et/u1sd565tno67tify', array('key'=>'TZOEpEjadsfnBZ65441ifasd@R@t','current_id'=>$current_id,'data'=>$sendData));
+            //$task_message2 = $this->curl_post('https://test.onebid.vip/api/wasdfllg54et/u1sd565tno67tify', array('key'=>'TZOEpEjadsfnBZ65441ifasd@R@t','current_id'=>$current_id,'data'=>$sendData));
+            $task_message2 = $this->curl_post('https://onebid.vip/api/wasdfllg54et/u1sd565tno67tify', array('key'=>'TZOEpEjadsfnBZ65441ifasd@R@t','current_id'=>$current_id,'data'=>$sendData));
 
             DB::table('token_boss_get')->insert(array('hash'=>$info->erc20_tx_hash,'update_time'=>date('Y-m-d H:i:s'),'to'=>$info->erc20_to,'data'=>$task_message2));
             return 1;
