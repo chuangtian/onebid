@@ -124,8 +124,8 @@ return [
     'log' => env('APP_LOG', 'daily'),
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
-    'erc20Address' => '0x6ef73e57f77bf735b22fcdbdf243f22684d4ffd7',
-    'ethAddress' => '0x6ef73e57f77bf735b22fcdbdf243f22684d4ffd7',
+    'erc20Address' => '0xc90f1d52f5f544c76e805117e54e059a956a45cc',
+    'ethAddress' => '0xc90f1d52f5f544c76e805117e54e059a956a45cc',
 //    'erc20Address' => '0xa25b48DE6ae47e59cBd9f1Ba0f853dC110E5C616',
 //    'ethAddress' => '0xa25b48DE6ae47e59cBd9f1Ba0f853dC110E5C616',
     'getFeeAddress' => '0x59246d484694e4a1e5942a9edd5ae9ea03d049ae',

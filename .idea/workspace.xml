@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3972d551-99c4-4bf0-b20e-b6bad36b8c01" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JobController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JobController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,9 +17,10 @@
     <session id="1648265768">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.0" value="2" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -55,7 +55,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/JobController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
+            <state relative-caret-position="7875">
               <caret line="737" column="99" selection-start-line="737" selection-start-column="99" selection-end-line="737" selection-end-column="99" />
             </state>
           </provider>
@@ -182,12 +182,13 @@
       <option name="presentableId" value="Default" />
       <updated>1611803909681</updated>
       <workItem from="1611803910982" duration="13601000" />
-      <workItem from="1613651604713" duration="50000" />
+      <workItem from="1613651604713" duration="783000" />
+      <workItem from="1613796334063" duration="620000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13651000" />
+    <option name="totallyTimeSpent" value="15004000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -200,9 +201,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1400" height="805" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4992928" visible="true" weight="0.2533137" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4992928" visible="true" weight="0.2569956" />
       <window_info id="Structure" order="1" sideWeight="0.5007072" side_tool="true" weight="0.2496318" />
       <window_info id="npm" order="2" sideWeight="0.5007072" side_tool="true" weight="0.2496318" />
       <window_info id="Favorites" order="3" sideWeight="0.5007072" side_tool="true" weight="0.2496318" />
@@ -241,7 +241,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/JobController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
+        <state relative-caret-position="7875">
           <caret line="737" column="99" selection-start-line="737" selection-start-column="99" selection-end-line="737" selection-end-column="99" />
         </state>
       </provider>
