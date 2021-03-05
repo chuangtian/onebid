@@ -20,8 +20,8 @@ class JobController extends Controller
 //        dd($ts);
         //$gethrpc=new Eth(config('app.eth'));//测试网络
         //$result=$gethrpc->personal_newAccount('ILPD2LSL91j2LH6k');
-        $result=$this->sendETH2('0x59246d484694e4a1e5942a9edd5ae9ea03d049ae','k7$wA3C95jNie!^G','0x47b349340139fe523f4ebe7583ebb4193229bd16');
-        dd($result);
+        //$result=$this->sendETH2('0x59246d484694e4a1e5942a9edd5ae9ea03d049ae','k7$wA3C95jNie!^G','0x47b349340139fe523f4ebe7583ebb4193229bd16');
+        //dd($result);
         //$result = $gethrpc->personal_unlockAccount('0xe50175b4a3b0189c1500dedb64bcf06161372b4a','knfa@#$$65GFDG78567%#kd');//解锁
         //$result = $gethrpc->personal_unlockAccount(config("app.getFeeAddress"),config("app.getFeeAddressPassword"));//解锁
         //$task_message2 = file_get_contents("http://127.0.0.1:36/accountAddress?apikey=DYVg22a6a8aaxH2A&address=0xe803c4e4b9ccd2c7e34d668be3485684bfe58825&platformName=ob");
