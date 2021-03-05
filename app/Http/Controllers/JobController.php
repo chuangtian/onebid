@@ -16,10 +16,11 @@ class JobController extends Controller
 
 
        // $ts=$this->getApi($request->ercHash);
-        $ts=$this->getApiEth($request->ercHash);
-        dd($ts);
-        //$gethrpc=new Eth(config('app.eth'));//测试网络
-        //$result=$gethrpc->personal_newAccount('k7$wA3C95jNie!^G');
+//        $ts=$this->getApiEth($request->ercHash);
+//        dd($ts);
+        $gethrpc=new Eth(config('app.eth'));//测试网络
+        $result=$gethrpc->personal_newAccount('ILPD2LSL91j2LH6k');
+        dd($result);
         //$result = $gethrpc->personal_unlockAccount('0xe50175b4a3b0189c1500dedb64bcf06161372b4a','knfa@#$$65GFDG78567%#kd');//解锁
         //$result = $gethrpc->personal_unlockAccount(config("app.getFeeAddress"),config("app.getFeeAddressPassword"));//解锁
         //$task_message2 = file_get_contents("http://127.0.0.1:36/accountAddress?apikey=DYVg22a6a8aaxH2A&address=0xe803c4e4b9ccd2c7e34d668be3485684bfe58825&platformName=ob");
