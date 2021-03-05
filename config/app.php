@@ -128,8 +128,10 @@ return [
     'ethAddress' => '0xc90f1d52f5f544c76e805117e54e059a956a45cc',
 //    'erc20Address' => '0xa25b48DE6ae47e59cBd9f1Ba0f853dC110E5C616',
 //    'ethAddress' => '0xa25b48DE6ae47e59cBd9f1Ba0f853dC110E5C616',
-    'getFeeAddress' => '0x59246d484694e4a1e5942a9edd5ae9ea03d049ae',
-    'getFeeAddressPassword' => 'k7$wA3C95jNie!^G',
+    //'getFeeAddress' => '0x59246d484694e4a1e5942a9edd5ae9ea03d049ae',
+    'getFeeAddress' => '0x47b349340139fe523f4ebe7583ebb4193229bd16',
+    'getFeeAddressPassword' => 'ILPD2LSL91j2LH6k',
+    //'getFeeAddressPassword' => 'k7$wA3C95jNie!^G',
     'AddressPassword' => 'knfa@#$$65GFDG78567%#kd',
 
 

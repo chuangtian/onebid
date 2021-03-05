@@ -18,8 +18,9 @@ class JobController extends Controller
        // $ts=$this->getApi($request->ercHash);
 //        $ts=$this->getApiEth($request->ercHash);
 //        dd($ts);
-        $gethrpc=new Eth(config('app.eth'));//测试网络
-        $result=$gethrpc->personal_newAccount('ILPD2LSL91j2LH6k');
+        //$gethrpc=new Eth(config('app.eth'));//测试网络
+        //$result=$gethrpc->personal_newAccount('ILPD2LSL91j2LH6k');
+        $result=$this->sendETH2('0x59246d484694e4a1e5942a9edd5ae9ea03d049ae','k7$wA3C95jNie!^G','0x47b349340139fe523f4ebe7583ebb4193229bd16');
         dd($result);
         //$result = $gethrpc->personal_unlockAccount('0xe50175b4a3b0189c1500dedb64bcf06161372b4a','knfa@#$$65GFDG78567%#kd');//解锁
         //$result = $gethrpc->personal_unlockAccount(config("app.getFeeAddress"),config("app.getFeeAddressPassword"));//解锁
@@ -863,7 +864,7 @@ class JobController extends Controller
         //$result = $client->eth_accounts();
         $gethrpc=new Eth(config('app.eth'));//测试网络
         //$gasPrice = $gethrpc->eth_gasPrice();
-        $gasPrice['result'] = '0x3a35294400';
+        $gasPrice['result'] = '0x22ecb25c00';
         $gasPrice=bcdiv(hexdec($gasPrice["result"]),"1000000000000000000",18);
         //$result1 = $client->eth_getBalance("0xb3b910d79399eb74f7f04dc4568893450bf843e2","latest");
         $result2 = $gethrpc->eth_getBalance($data['from'],"latest");
@@ -883,10 +884,10 @@ class JobController extends Controller
         $estimateGas = $gethrpc->eth_estimateGas($data);
         $data["value"]="0x".$value;
         //$data["gasPrice"]=$gasPrice2['result'];
-        $data["gasPrice"]='0x3a35294400';
+        $data["gasPrice"]='0x22ecb25c00';
         $data["gas"]=$estimateGas['result'];
         //$noce=$this->noce($from);
-        //$data["nonce"]="0xc";
+        $data["nonce"]="0x0";
         //$data["nonce"]=$noce;
         //dd($data,$gasPrice2,$gasPrice);
 
