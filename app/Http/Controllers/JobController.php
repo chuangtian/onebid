@@ -295,7 +295,7 @@ class JobController extends Controller
 
         foreach ($erc20_data as $value){
             //dd($value->hash);
-            $keyinfo=DB::table('accounts')->where('address',$value->to)->where('platformName','jarcm')->first();
+            $keyinfo=DB::table('accounts')->where('address',$value->to)->where('platformName','ob')->first();
             //dd($erc20_data);
             if($keyinfo){
                 try {
