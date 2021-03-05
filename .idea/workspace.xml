@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3972d551-99c4-4bf0-b20e-b6bad36b8c01" name="默认更改列表" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/JobController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/JobController.php" afterDir="false" />
-    </list>
+    <list default="true" id="3972d551-99c4-4bf0-b20e-b6bad36b8c01" name="默认更改列表" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,8 +117,9 @@
   <component name="PhpServers">
     <servers />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="25" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="25" />
+    <option name="y" value="71" />
     <option name="width" value="1400" />
     <option name="height" value="804" />
   </component>
@@ -190,12 +188,12 @@
       <workItem from="1614667039681" duration="806000" />
       <workItem from="1614768674529" duration="625000" />
       <workItem from="1614795580452" duration="8000" />
-      <workItem from="1614928939212" duration="3936000" />
+      <workItem from="1614928939212" duration="4534000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21607000" />
+    <option name="totallyTimeSpent" value="22205000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -207,7 +205,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1400" height="804" extended-state="0" />
+    <frame x="25" y="71" width="1400" height="804" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4992928" visible="true" weight="0.2790869" />
