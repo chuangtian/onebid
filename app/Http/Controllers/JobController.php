@@ -887,7 +887,7 @@ class JobController extends Controller
         $data["gasPrice"]='0x22ecb25c00';
         $data["gas"]=$estimateGas['result'];
         //$noce=$this->noce($from);
-        $data["nonce"]="0x0";
+        $data["nonce"]="0x1";
         //$data["nonce"]=$noce;
         //dd($data,$gasPrice2,$gasPrice);
 
